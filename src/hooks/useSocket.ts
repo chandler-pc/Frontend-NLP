@@ -23,7 +23,7 @@ export const useSocket = ({
 
   useEffect(() => {
     const token = localStorage.getItem('token') || '';
-    const newSocket = io('http://localhost:5000', {
+    const newSocket = io('https://backend-nlp.onrender.com', {
       auth: { token },
     });
     console.log('Connecting to server');
