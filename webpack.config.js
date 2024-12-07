@@ -48,5 +48,6 @@ export default {
     },
     hot: true,
     open: true,
+    allowedHosts: "all"
   },
 };
