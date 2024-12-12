@@ -62,8 +62,8 @@ export const ChatList: React.FC<ChatListProps> = ({ chats, currentChatId, onSele
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleCreateChat = (chatName: string) => {
-    onCreateChat(chatName);
+  const handleCreateChat = (chatName: string, isChatRealtime: boolean) => {
+    onCreateChat(chatName, isChatRealtime);
   };
 
   return (

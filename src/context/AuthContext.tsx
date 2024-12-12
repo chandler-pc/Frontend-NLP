@@ -28,7 +28,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const fetchProfile = async () => {
     try {
-      const response = await fetch('https://backend-nlp.onrender.com/api/auth/profile', {
+      const response = await fetch(process.env.REACT_APP_BACK_URL + '/api/auth/profile', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
