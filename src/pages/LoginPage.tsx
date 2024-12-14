@@ -34,7 +34,7 @@ const LoginPage: React.FC = () => {
     }
 
     try {
-      const response = await fetch(process.env.REACT_APP_BACK_URL + '/api/auth/login', {
+      const response = await fetch('https://backend-nlp.onrender.com/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
@@ -47,7 +47,7 @@ const LoginPage: React.FC = () => {
         setError(data.error || 'Credenciales inválidas');
       }
     } catch {
-      setError(process.env.REACT_APP_BACK_URL + 'Error en el servidor. Por favor, intente nuevamente más tarde.');
+      setError('Error en el servidor. Por favor, intente nuevamente más tarde.');
     } finally {
       setIsLoading(false);
     }

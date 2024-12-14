@@ -40,7 +40,7 @@ const RegisterPage: React.FC = () => {
     }
 
     try {
-      const response = await fetch(process.env.REACT_APP_BACK_URL + '/api/auth/register', {
+      const response = await fetch('https://backend-nlp.onrender.com/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

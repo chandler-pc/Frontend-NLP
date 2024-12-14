@@ -1,13 +1,13 @@
 import React, { useState, KeyboardEvent } from 'react';
-import { Input } from "../components/ui/input"
 import { Button } from "../components/ui/button"
 import { Send } from 'lucide-react'
 
 interface ChatInputProps {
   onSendMessage: (message: string) => void;
+  promptMessage?: string;
 }
 
-export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
+export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, promptMessage }) => {
   const [message, setMessage] = useState('');
 
   const handleSend = () => {
@@ -17,7 +17,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
     }
   };
 
-  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSend();
@@ -25,16 +25,16 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
   };
 
   return (
-    <div className="flex items-center space-x-2 p-4 bg-background border-t border-border">
-      <Input
-        type="text"
-        placeholder="Escribe un mensaje..."
+    <div className="flex items-start space-x-2 px-4 pb-2 bg-background">
+      <textarea
+        rows={1}
+        placeholder={promptMessage}
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={handleKeyPress}
-        className="flex-1"
+        className="flex-1 resize-none p-2 border rounded-lg"
       />
-      <Button 
+      <Button
         onClick={handleSend}
         disabled={!message.trim()}
         className="px-4 py-2"

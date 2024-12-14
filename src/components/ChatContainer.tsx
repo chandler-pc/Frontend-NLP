@@ -10,20 +10,32 @@ interface ChatContainerProps {
     messages: Message[];
     username: string;
     handleSendMessage: (message: string) => void;
+    isWriting?: boolean;
 }
-
-export const ChatContainer: React.FC<ChatContainerProps> = ({ selectedModel, setSelectedModel, messages, username, handleSendMessage }) => {
-
+export const ChatContainer: React.FC<ChatContainerProps> = ({
+    selectedModel,
+    setSelectedModel,
+    messages,
+    username,
+    handleSendMessage,
+    isWriting,
+}) => {
     return (
-        <div className='flex flex-col'>
-            <div className="flex justify-between items-center mb-4 h-auto">
+        <div className="flex flex-col h-[calc(100vh-4rem)]">
+            <div className="flex justify-between items-center bg-white shadow-sm px-4 py-2">
                 <h2 className="text-2xl font-bold">Chat</h2>
                 <ModelSelector selectedModel={selectedModel} onSelectModel={setSelectedModel} />
             </div>
-            <div className='flex-grow'>
-                <ChatMessages messages={messages} username={username} />
-                <ChatInput onSendMessage={handleSendMessage} />
+
+            <div className="flex-1 overflow-y-auto">
+                <ChatMessages messages={messages} username={username} isWriting={isWriting} />
+            </div>
+
+            <div className="bg-white p-4">
+                <ChatInput onSendMessage={handleSendMessage} promptMessage="Escribe un mensaje..." />
             </div>
         </div>
     );
-}
+};
+
+
